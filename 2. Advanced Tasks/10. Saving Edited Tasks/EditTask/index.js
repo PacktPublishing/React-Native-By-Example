@@ -27,6 +27,12 @@ class EditTask extends Component {
     }
   }
 
+  componentWillMount () {
+    this.setState({
+      dateSelected: this.props.details.dueDate ? true : false
+    })
+  }
+
   render () {
     return (
       <View style={ styles.editTaskContainer }>
@@ -41,14 +47,14 @@ class EditTask extends Component {
         </View>
         <View style={ [styles.container, { maxHeight: this.state.expanded ? this.state.datePickerHeight : 40 }] }>
           <ExpandableCell
-            title={{
+            childrenHeight={ this.state.datePickerHeight }
+            textConditionals={{
+              dueDateAssigned: this.props.details.dueDate,
+              dateSelected: this.state.dateSelected,
+              secondaryDetails: this.state.formattedDate,
               empty: 'Set Reminder',
               assigned: 'Due On'
             }}
-            childrenHeight={ this.state.datePickerHeight }
-            dateSelected={ this.state.dateSelected }
-            dueDateAssigned={ this.props.dueDate }
-            secondaryDetails={ this.state.formattedDate }
             onPress={ () => this._onExpand() }>
             <DatePickerIOS
               date={ this.state.date }
@@ -59,7 +65,7 @@ class EditTask extends Component {
         </View>
         <View>
           <TouchableHighlight
-            disabled={ this.state.dateSelected ? false : true }
+            disabled={ !this.state.dateSelected }
             onPress={ () => this._clearDate() }
             style={ styles.clearDateRow }
             underlayColor={ '#D3D3D3' }>
@@ -88,9 +94,10 @@ class EditTask extends Component {
 
   _clearDate () {
     this.setState({
-      dateSelected: false,
-      formattedDate: undefined
+      dateSelected: false
     })
+
+    this.props.clearDate();
   }
 
   _formatDate (date) {

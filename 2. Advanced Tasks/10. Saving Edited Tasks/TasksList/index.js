@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 
 import {
-  AlertIOS,
   AsyncStorage,
   ListView,
+  Platform,
   ScrollView,
   Text,
   TextInput,
@@ -82,6 +82,12 @@ class TasksList extends Component {
     this._storeAsyncStorageListOfTasks(listOfTasks);
   }
 
+  _clearDate () {
+    const task = this.state.selectedTask;
+    task.dueDate = undefined;
+    task.formattedDate = undefined;
+  }
+
   _completeTask (rowID) {
     this._retrieveAsyncStorageListOfTasks((listOfTasks) => {
       listOfTasks[rowID].completed = !listOfTasks[rowID].completed;
@@ -98,20 +104,7 @@ class TasksList extends Component {
 
     const uneditedTask = Object.assign({}, this.state.listOfTasks[rowID]);
 
-    this.props.navigator.push({
-      component: EditTask,
-      passProps: {
-        details: this.state.selectedTask,
-        changeTaskDue: (date, formattedDate) => this._updateDueDate(date, formattedDate),
-        changeTaskName: (name) => this._updateTask('text', name),
-        changeTaskStatus: (completed) => this._updateTask('completed', completed)
-      },
-      title: this.state.selectedTask.text,
-      leftButtonTitle: 'Cancel',
-      rightButtonTitle: 'Save',
-      onLeftButtonPress: () => this._revertDetails(uneditedTask),
-      onRightButtonPress: () => this._saveEditedTask()
-    })
+    this._renderEditTaskView(uneditedTask)
   }
 
   _popAndClearSelection () {
@@ -123,10 +116,28 @@ class TasksList extends Component {
     });
   }
 
+  _renderEditTaskView (uneditedTask) {
+    this.props.navigator.push({
+      component: EditTask,
+      passProps: {
+        details: this.state.selectedTask,
+        changeTaskDue: (date, formattedDate) => this._updateDueDate(date, formattedDate),
+        changeTaskName: (name) => this._updateTask('text', name),
+        changeTaskStatus: (completed) => this._updateTask('completed', completed),
+        clearDate: () => this._clearDate()
+      },
+      title: this.state.selectedTask.text,
+      leftButtonTitle: 'Cancel',
+      rightButtonTitle: 'Save',
+      onLeftButtonPress: () => this._revertDetails(uneditedTask),
+      onRightButtonPress: () => this._saveEditedTask()
+    })
+  }
+
   _retrieveAsyncStorageListOfTasks (callback) {
     AsyncStorage.getItem('listOfTasks', (error, result) => {
       const parsedResult = JSON.parse(result);
-      const listOfTasks = parsedResult.slice() || [];
+      const listOfTasks = parsedResult ? parsedResult.slice() : [];
 
       callback(listOfTasks);
     })

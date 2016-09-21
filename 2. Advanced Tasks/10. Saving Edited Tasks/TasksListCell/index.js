@@ -18,7 +18,7 @@ class TasksListCell extends Component {
           underlayColor="#D5DBDE" >
           <View style={ styles.textContainer }>
             <Text
-              style={ [styles.rowText, { textDecorationLine: this.props.completed ? 'line-through' : 'none' }] }> { this.props.data.text } </Text>
+              style={ [styles.rowText, { textDecorationLine: this.props.completed ? 'line-through' : 'none' }] }> { this.props.text } </Text>
             <Text style={ styles.dueDateText }> { this._getDueDate() } </Text>
           </View>
         </TouchableHighlight>
@@ -27,11 +27,11 @@ class TasksListCell extends Component {
   }
 
   _getDueDate () {
-    if (this.props.data.formattedDate && !this.props.data.completed) {
-      return 'Due ' + this.props.data.formattedDate;
+    if (this.props.formattedDate && !this.props.completed) {
+      return 'Due ' + this.props.formattedDate;
     }
 
-    if (!this.props.data.formattedDate) {
+    if (!this.props.formattedDate) {
       return '';
     }
   }
