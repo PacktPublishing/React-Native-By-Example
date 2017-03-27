@@ -1,4 +1,4 @@
-#React Native By Example
+# React Native By Example
 This is the code repository for [React Native By Example](https://www.packtpub.com/application-development/react-native-example?utm_source=github&utm_medium=repository&utm_campaign=9781786464750), published by [Packt](https://www.packtpub.com/?utm_source=github). It contains all the supporting project files necessary to work through the book from start to finish.
 ## About the Book
 React Native with its ability to build native apps using JavaScript is gaining massive popularity in the world of application development. Developers now have the luxury to write world-class mobile applications that look and work as native with the comfort of a language that is already widely used.
