@@ -2,7 +2,7 @@
 This is the code repository for [React Native By Example](https://www.packtpub.com/application-development/react-native-example?utm_source=github&utm_medium=repository&utm_campaign=9781786464750), published by [Packt](https://www.packtpub.com/?utm_source=github). It contains all the supporting project files necessary to work through the book from start to finish.
 ## About the Book
 React Native with its ability to build native apps using JavaScript is gaining massive popularity in the world of application development. Developers now have the luxury to write world-class mobile applications that look and work as native with the comfort of a language that is already widely used.
-##Instructions and Navigation
+## Instructions and Navigation
 All of the code is organized into folders. Each folder starts with a number followed by the application name. For example, Chapter02.
 
 
@@ -31,12 +31,12 @@ You will need to install the React Native SDK for your Mac. Instructions can be 
 
 Instructions to install Xcode and Android Studio are also available on that same page for installing the React Native SDK to your machine.
 
-##Related Products
+## Related Products
 * [React and React Native](https://www.packtpub.com/web-development/react-and-react-native?utm_source=github&utm_medium=repository&utm_campaign=9781786465658)
 
 * [ReactJS by Example - Building Modern Web Applications with React](https://www.packtpub.com/web-development/reactjs-example-building-modern-web-applications-react?utm_source=github&utm_medium=repository&utm_campaign=9781785289644)
 
 * [Mastering React Native](https://www.packtpub.com/web-development/mastering-react-native?utm_source=github&utm_medium=repository&utm_campaign=9781785885785)
 
-###Suggestions and Feedback
+### Suggestions and Feedback
 [Click here](https://docs.google.com/forms/d/e/1FAIpQLSe5qwunkGf6PUvzPirPDtuy1Du5Rlzew23UBp2S-P3wB-GcwQ/viewform) if you have any feedback or suggestions.
